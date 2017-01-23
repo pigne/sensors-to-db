@@ -21,7 +21,7 @@ For this to work you need :
 You need to specify to urls to the main script (`sensors-to-db`):
 
 - the broker URI as a parameter (`--broker=XXX`) on the command line or as an enviroment variable: `SENSORS_TO_DB_BROKER`
-- the mongodb full URI as a parameter (`--bb=XXX`) on the command line, or as an environment variable: `SENSORS_TO_DB_DB`
+- the mongodb full URI as a parameter (`--db=XXX`) on the command line, or as an environment variable: `SENSORS_TO_DB_DB`
 
 ## Docker
 

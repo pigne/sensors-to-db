@@ -23,17 +23,19 @@ client.on('message', (topic, payload) => {
   const value =  payload.value
 
   if(typeof sensors[id] === 'undefined') {
-    const sensor = new Sensor();
-    sensor.setValue('_id', id);
-    sensor.setValue('type', type);
+    const sensor = new Sensor({
+      _id: id,
+      type: type,
+    });
     sensors[id] = sensor;
     logger.debug("new sensor", sensor)
     sensor.save();
   }
-  const measure = new  Measure();
-  measure.setValue('sensor_id', id);
-  measure.setValue('date', new Date());
-  measure.setValue('value', value);
+  const measure = new  Measure({
+    sensor_id: id,
+    date: new Date(),
+    value: value
+  });
   measure.save();
 
   logger.debug(id, type, value, payload)
