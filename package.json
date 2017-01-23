@@ -1,0 +1,17 @@
+{
+  "name": "sensors-to-db",
+  "version": "1.0.0",
+  "description": "Listens to an MQTT broker for sensor events and logs it in a mongo db.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yoann Pigné",
+  "license": "ISC",
+  "dependencies": {
+    "log4js": "^1.1.0",
+    "minimist": "^1.2.0",
+    "mongoose": "^4.7.7",
+    "mqtt": "^2.3.0"
+  }
+}
