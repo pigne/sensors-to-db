@@ -16,8 +16,8 @@ var measureSchema  = new mongoSchema (
     },
     "value": String
   },
-  {'timestamps' : true}
+  {'timestamps' : false}
 );
 
 // create model if not exists.
-module.exports = mongoose.model('Measure',measureSchema, "mesures");
+module.exports = mongoose.model('Measure',measureSchema, "measures");
