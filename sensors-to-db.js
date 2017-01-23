@@ -10,19 +10,31 @@ require('./mongodb');
 let Sensor = require("./model/Sensor");
 let Measure = require("./model/Measure");
 
-let sensors = []
+let sensors = {}
 let client = mqtt.connect(config.broker);
 
 client.on('connect', () => {
   client.subscribe('value/#')
-  client.subscribe('presence')
 })
-client.on('message', (topic, message) => {
-  let id;
-  if(topic == "presence") {
-    id = message;
-  } else {
-    id = topic.substring(6)
+client.on('message', (topic, payload) => {
+  payload = JSON.parse(payload)
+  const id = topic.substring(6)
+  const type = payload.type
+  const value =  payload.value
+
+  if(typeof sensors[id] === 'undefined') {
+    const sensor = new Sensor();
+    sensor.setValue('_id', id);
+    sensor.setValue('type', type);
+    sensors[id] = sensor;
+    logger.debug("new sensor", sensor)
+    sensor.save();
   }
-  logger.debug(id, message.toString())
+  const measure = new  Measure();
+  measure.setValue('sensor_id', id);
+  measure.setValue('date', new Date());
+  measure.setValue('value', value);
+  measure.save();
+
+  logger.debug(id, type, value, payload)
 });
