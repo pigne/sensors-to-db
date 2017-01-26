@@ -16,14 +16,23 @@ For this to work you need :
 - an external process that sends mqtt events following the format defined in <https://github.com/pigne/random-sensors>.
 
 
-## parameters
+## Launch and parameters
 
-You need to specify two urls to the main script (`sensors-to-db`):
+To launch this app, you need to install all depencies (**npm install** in the directory) ant then you can run **npm start**
 
-- the broker URI as a parameter (`-- --broker=XXX`) on the command line or as an enviroment variable: `SENSORS_TO_DB_BROKER`
-- the mongodb full URI as a parameter (`-- --db=XXX`) on the command line, or as an environment variable: `SENSORS_TO_DB_DB`
+But be sure to pass two variables to the script, like so :
+~~~bash
+npm install
+npm start --broker=ws://localhost --db=mongo://localhost:27017/test
+~~~
+_Note: if that doesn't work for you, try passing en extra -- before the first argument. It's because you dont have the last version of nodejs_
 
-The first -- is needed because of how babel handle parameters.
+Of, cours you should change the crendential to match yours.
+
+If you dont like this, you can still make it work be using environment variable, like so :
+~~~bash
+SENSORS_TO_DB_BROKER=ws://localhost SENSORS_TO_DB_DB=mongo://localhost:27017/test npm start
+~~~
 
 ## Docker
 
