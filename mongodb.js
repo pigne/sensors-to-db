@@ -9,7 +9,6 @@ var logger = log4js.getLogger('dbLogger')
 // When successfully connected
 mongoose.connection.on('connected', function () {
   logger.info('Connected to database at ' + config.db);
-	require('./sensor-to-db.js');
 });
 
 // If the connection throws an error
