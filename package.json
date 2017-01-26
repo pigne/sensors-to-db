@@ -4,6 +4,7 @@
   "description": "Listens to an MQTT broker for sensor events and logs it in a mongo db.",
   "main": "index.js",
   "scripts": {
+    "start": "babel-node sensors-to-db.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Yoann Pigné",
@@ -11,7 +12,11 @@
   "dependencies": {
     "log4js": "^1.1.0",
     "minimist": "^1.2.0",
-    "mongoose": "^4.7.7",
+    "mongoose": "^4.7.8",
     "mqtt": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "minimist": "^1.2.0"
   }
 }
