@@ -20,8 +20,10 @@ For this to work you need :
 
 You need to specify two urls to the main script (`sensors-to-db`):
 
-- the broker URI as a parameter (`-- --broker=XXX`) on the command line or as an enviroment variable: `SENSORS_TO_DB_BROKER`
-- the mongodb full URI as a parameter (`-- --db=XXX`) on the command line, or as an environment variable: `SENSORS_TO_DB_DB`
+- the broker URI as a parameter (`--broker=XXX`) on the command line or as an enviroment variable: `SENSORS_TO_DB_BROKER`
+- the mongodb full URI as a parameter (`--db=XXX`) on the command line, or as an environment variable: `SENSORS_TO_DB_DB`
+
+If, for any reason, you need to use a babel version <= 6.11.4 then just add -- before the first parameters, then chain them.
 
 The first -- is needed because of how babel handle parameters.
 
