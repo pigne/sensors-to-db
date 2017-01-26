@@ -25,4 +25,12 @@ You need to specify to urls to the main script (`sensors-to-db`):
 
 ## Docker
 
-Todo.
+The dockerfile let you easily launch the app.
+~~~bash
+docker build -t sensorToDB .
+docker run -e "SENSORS_TO_DB_BROKER=ws://localhost" -e "SENSORS_TO_DB_DB=mongo://localhost:27017/test" sensorToDB
+~~~
+
+Of course you can change the environment variable, but they need to be set. The mongoDB instance and the Broker need to be up as well.
+
+We recommend the use of a docker-compose.yml file.
