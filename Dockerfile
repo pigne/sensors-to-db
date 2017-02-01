@@ -11,4 +11,8 @@ RUN npm install
 # Bundle app source
 COPY . /usr/src/app
 
-CMD [ "node", "sensors-to-db.js" ]
+RUN chmod +x ./node_modules/.bin/babel
+
+RUN npm run compile
+
+CMD [ "node", "dist/sensors-to-db.js" ]

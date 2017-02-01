@@ -2,10 +2,11 @@
   "name": "sensors-to-db",
   "version": "1.0.0",
   "description": "Listens to an MQTT broker for sensor events and logs it in a mongo db.",
-  "main": "index.js",
+  "main": "src/sensors-to-db.js",
   "scripts": {
-    "start": "babel-node sensors-to-db.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/sensors-to-db.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "babel src -d dist/"
   },
   "author": "Yoann Pigné",
   "license": "ISC",
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
+    "babel-preset-env": "^1.1.8",
     "minimist": "^1.2.0"
   }
 }
