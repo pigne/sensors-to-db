@@ -61,8 +61,8 @@ services:
   sensorstodb:
     build: .
     environment:
-      - SENSORS_TO_DB_DB=mongo
-      - SENSORS_TO_DB_BROKER=mosca
+      - SENSORS_TO_DB_DB=mongo://mongo:27017/test
+      - SENSORS_TO_DB_BROKER=ws://mosca
     depends_on:
       - mosca
       - mongo
