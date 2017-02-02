@@ -1,0 +1,19 @@
+version: '2'
+services:
+  mosca:
+    image: matteocollina/mosca
+    ports:
+      - "8080:80"
+      - "1883:1883"
+
+  mongo:
+    image: mongo
+
+  sensorstodb:
+    build: .
+    environment:
+      - SENSORS_TO_DB_DB=mongodb://mongo:27017/test
+      - SENSORS_TO_DB_BROKER=ws://mosca
+    depends_on:
+      - mosca
+      - mongo
