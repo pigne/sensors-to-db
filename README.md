@@ -55,15 +55,30 @@ services:
       - "8080:80"
       - "1883:1883"
 
-  mongo:
+  mongodb:
     image: mongo
 
   sensorstodb:
     build: .
     environment:
-      - SENSORS_TO_DB_DB=mongodb://mongo:27017/test
+      - SENSORS_TO_DB_DB=mongodb://mongodb:27017/test
       - SENSORS_TO_DB_BROKER=ws://mosca
     depends_on:
       - mosca
       - mongo
+```
+
+The connection to mongodb is blocking : if the mongodb server isn't ready, but the script tries to access to it, an exception will be raised, and the script will stop. To avoid this, we'll set an entrypoint which will wait for the mongo server to be reachable before launching the sensors-to-db app.
+
+```yaml
+sensors-to-db:
+  build: docker/sensorstodb
+  entrypoint: /usr/src/app/entrypoint.sh
+  command: [ node, dist/sensors-to-db.js ]
+  environment:
+    - SENSORS_TO_DB_DB=mongodb://mongodb:27017/test
+    - SENSORS_TO_DB_BROKER=ws://mosca
+  depends_on:
+    - mongodb
+    - mosca
 ```
